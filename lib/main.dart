@@ -21,25 +21,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-                child: CircularProgressIndicator(
-              color: Colors.white,
-            ));
-          } else if (snapshot.hasError) {
-            return showSnackBar(context, "Something went wrong");
-          } else if (snapshot.hasData) {
-            return Home();
-          } else {
-            return LoginScreen();
-          }
-        },
-      ),
-    );
+    return MaterialApp(
+        title: "myApp",
+        debugShowCheckedModeBanner: false,
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.white,
+              ));
+            } else if (snapshot.hasError) {
+              return showSnackBar(context, "Something went wrong");
+            } else if (snapshot.hasData) {
+              return LoginScreen();
+            } else {
+              return Home();
+            }
+          },
+        )
+        );
   }
 }
+
+
+    

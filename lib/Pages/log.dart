@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../extras/deco.dart';
 import '../extras/snackbar.dart';
 import 'Registerpage.dart';
+import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -169,6 +170,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_formKey2.currentState!.validate()) {
                           await _signIn();
                           if (!mounted) return;
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => Home()),
+                          );
                         }
                       }),
               SizedBox(height: 10),
